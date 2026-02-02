@@ -1,4 +1,4 @@
-/* RESET: Remove as margens padrão que criam os espaços em branco nas bordas */
+/* 1. RESET E CONFIGURAÇÕES GERAIS */
 * {
     margin: 0;
     padding: 0;
@@ -9,20 +9,19 @@ body {
     background-color: #0f172a;
     color: white;
     font-family: 'Segoe UI', sans-serif;
-    overflow-x: hidden; /* Evita barra de rolagem horizontal indesejada */
+    overflow-x: hidden;
 }
 
-/* CABEÇALHO: Ajuste de alinhamento */
+/* 2. CABEÇALHO E LOGO */
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* Diminuímos o 10% para 5% para a logo chegar mais perto da margem esquerda */
     padding: 20px 5%; 
     background-color: #0f172a;
     position: sticky;
     top: 0;
-    width: 100%; /* Garante que a barra ocupe toda a largura */
+    width: 100%;
     z-index: 1000;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -30,44 +29,88 @@ header {
 .logo {
     font-size: 1.6rem;
     font-family: 'Poppins', sans-serif;
-    font-weight: 800; /* Mais grosso para dar impacto */
+    font-weight: 800;
     color: white;
-    letter-spacing: -1px; /* Letras mais juntas dão ar de logo profissional */
-    cursor: pointer;
-    text-transform: uppercase; /* Tudo maiúsculo fica mais imponente */
+    letter-spacing: -1px;
+    text-transform: uppercase;
     transition: 0.3s;
+    cursor: pointer;
 }
 
-/* O "Silva" em destaque */
 .logo span {
-    color: #38bdf8; /* Seu azul neon */
-    font-weight: 300; /* Mais fino para criar o contraste 'Bold vs Light' */
+    color: #38bdf8;
+    font-weight: 300;
     margin-left: 2px;
 }
 
-/* Efeito ao passar o mouse na logo */
 .logo:hover {
     text-shadow: 0 0 15px rgba(56, 189, 248, 0.6);
-    transform: scale(1.02); /* Ela cresce levemente */
+    transform: scale(1.02);
 }
 
+/* 3. NAVEGAÇÃO E BOTÕES MASK */
 nav ul {
     display: flex;
     list-style: none;
-    gap: 25px;
+    gap: 15px; /* Espaço entre os botões do menu */
+    align-items: center;
 }
 
-nav ul li a {
-    text-decoration: none;
-    color: white;
-    transition: 0.3s;
+.button-container-menu {
+    position: relative;
+    width: 100px;
+    height: 35px;
+    overflow: hidden;
+    border: 1px solid #38bdf8;
+    border-radius: 4px;
+    transition: 0.5s;
 }
 
-nav ul li a:hover {
+.mas {
+    position: absolute;
     color: #38bdf8;
+    text-align: center;
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 10px;
+    line-height: 35px;
+    z-index: 0;
 }
 
-/* SEÇÃO HERO: Centralização do conteúdo principal */
+.button-container-menu button {
+    width: 101%;
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 10px;
+    background: #38bdf8;
+    color: #0f172a;
+    cursor: pointer;
+    border: none;
+    z-index: 10;
+    -webkit-mask: url("https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/nature-sprite.png");
+    mask: url("https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/nature-sprite.png");
+    -webkit-mask-size: 2300% 100%;
+    mask-size: 2300% 100%;
+    animation: ani2 0.7s steps(22) forwards;
+}
+
+.button-container-menu button:hover {
+    animation: ani 0.7s steps(22) forwards;
+}
+
+@keyframes ani {
+    from { -webkit-mask-position: 0 0; mask-position: 0 0; }
+    to { -webkit-mask-position: 100% 0; mask-position: 100% 0; }
+}
+
+@keyframes ani2 {
+    from { -webkit-mask-position: 100% 0; mask-position: 100% 0; }
+    to { -webkit-mask-position: 0 0; mask-position: 0 0; }
+}
+
+/* 4. SEÇÃO HERO */
 .hero {
     height: 80vh;
     display: flex;
@@ -78,58 +121,21 @@ nav ul li a:hover {
     padding: 0 5%;
 }
 
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
 .hero h1 span {
     color: #38bdf8;
 }
 
-.btn {
-    margin-top: 25px;
-    padding: 12px 30px;
-    background-color: #38bdf8;
-    color: #0f172a;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: 0.3s;
+.hero p {
+    font-size: 1.2rem;
+    opacity: 0.8;
 }
 
-.btn:hover {
-    background-color: #0ea5e9;
-    transform: translateY(-3px); /* Efeito de levante ao passar o mouse */
-}
-
-/* Configuração do Botão Neon */
-.btn-neon {
-    position: relative;
-    display: inline-block;
-    padding: 15px 30px;
-    color: #38bdf8; /* O seu azul claro */
-    text-decoration: none;
-    text-transform: uppercase;
-    transition: 0.5s;
-    letter-spacing: 2px;
-    overflow: hidden;
-    font-weight: bold;
-    margin-top: 20px;
-}
-
-/* Efeito de brilho ao passar o mouse */
-.btn-neon:hover {
-    background: #38bdf8;
-    color: #0f172a; /* Cor do fundo do seu site */
-    box-shadow: 0 0 5px #38bdf8, 
-                0 0 25px #38bdf8, 
-                0 0 50px #38bdf8, 
-                0 0 100px #38bdf8;
-}
-
-/* Estrutura das spans de animação */
-.btn-neon span {
-    position: absolute;
-    display: block;
-}
-
-/* 4. ANIMAÇÃO DO BOTÃO NEON (Velocidade Ajustada para 3s) */
+/* 5. BOTÃO NEON */
 .btn-neon {
     position: relative;
     display: inline-block;
@@ -140,8 +146,8 @@ nav ul li a:hover {
     transition: 0.5s;
     letter-spacing: 2px;
     overflow: hidden;
-    margin-top: 30px;
     font-weight: bold;
+    margin-top: 30px;
 }
 
 .btn-neon:hover {
@@ -155,53 +161,110 @@ nav ul li a:hover {
     display: block;
 }
 
-/* Linha Superior */
 .btn-neon span:nth-child(1) {
-    top: 0; 
-    left: -100%; 
-    width: 100%; 
-    height: 2px;
+    top: 0; left: -100%; width: 100%; height: 2px;
     background: linear-gradient(90deg, transparent, #38bdf8);
     animation: btn-anim1 3s linear infinite;
 }
 @keyframes btn-anim1 { 0% { left: -100%; } 50%, 100% { left: 100%; } }
 
-/* Linha Direita */
 .btn-neon span:nth-child(2) {
-    top: -100%; 
-    right: 0; 
-    width: 2px; 
-    height: 100%;
+    top: -100%; right: 0; width: 2px; height: 100%;
     background: linear-gradient(180deg, transparent, #38bdf8);
     animation: btn-anim2 3s linear infinite;
     animation-delay: 0.75s;
 }
 @keyframes btn-anim2 { 0% { top: -100%; } 50%, 100% { top: 100%; } }
 
-/* Linha Inferior */
 .btn-neon span:nth-child(3) {
-    bottom: 0; 
-    right: -100%; 
-    width: 100%; 
-    height: 2px;
+    bottom: 0; right: -100%; width: 100%; height: 2px;
     background: linear-gradient(270deg, transparent, #38bdf8);
     animation: btn-anim3 3s linear infinite;
     animation-delay: 1.5s;
 }
 @keyframes btn-anim3 { 0% { right: -100%; } 50%, 100% { right: 100%; } }
 
-/* Linha Esquerda */
 .btn-neon span:nth-child(4) {
-    bottom: -100%; 
-    left: 0; 
-    width: 2px; 
-    height: 100%;
+    bottom: -100%; left: 0; width: 2px; height: 100%;
     background: linear-gradient(360deg, transparent, #38bdf8);
     animation: btn-anim4 3s linear infinite;
     animation-delay: 2.25s;
 }
 @keyframes btn-anim4 { 0% { bottom: -100%; } 50%, 100% { bottom: 100%; } }
-@keyframes btn-anim4 {
-    0% { bottom: -100%; }
-    50%, 100% { bottom: 100%; }
+
+/* MELHORIA NO HEADER: Efeito Glassmorphism */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 8%; /* Aumentei o recuo lateral */
+    background: rgba(15, 23, 42, 0.8); /* Fundo semi-transparente */
+    backdrop-filter: blur(12px); /* Desfoque atrás do menu */
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(56, 189, 248, 0.2); /* Linha neon sutil */
+}
+
+/* MELHORIA NO TEXTO HERO */
+.hero h1 {
+    font-size: 4rem; /* Maior para dar impacto */
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    letter-spacing: -2px;
+}
+
+.hero p {
+    font-size: 1.3rem;
+    max-width: 600px;
+    margin-top: 15px;
+    color: #94a3b8; /* Cinza azulado para não competir com o branco */
+}
+
+/* NOVO: ESTILO DO RODAPÉ */
+.footer {
+    padding: 60px 8% 30px;
+    background-color: #0b1222;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    margin-top: 100px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.footer p {
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+.social-links {
+    display: flex;
+    gap: 20px;
+}
+
+.social-links a {
+    color: #38bdf8;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: 0.3s;
+    opacity: 0.7;
+}
+
+.social-links a:hover {
+    opacity: 1;
+    text-shadow: 0 0 10px #38bdf8;
+}
+
+/* AJUSTE NOS BOTÕES DO MENU PARA FICAREM MAIS ELEGANTES */
+.button-container-menu {
+    border: 1px solid rgba(56, 189, 248, 0.4); /* Borda mais fina e suave */
+    height: 38px;
+    width: 110px;
 }
